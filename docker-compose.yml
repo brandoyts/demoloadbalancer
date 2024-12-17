@@ -1,7 +1,7 @@
 version: "3"
 services:
   frontend:
-    image: doyts/demoloadbalancing_frontend
+    image: doyts/demoloadbalancer_frontend
     build:
       context: .
       dockerfile: frontend.Dockerfile
@@ -11,7 +11,7 @@ services:
       - loadbalancing
 
   nginx:
-    image: doyts/demoloadbalancing_loadbalancer
+    image: doyts/demoloadbalancer_loadbalancer
     build:
       context: .
       dockerfile: loadbalancer.Dockerfile
