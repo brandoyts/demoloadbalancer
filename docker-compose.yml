@@ -1,0 +1,26 @@
+version: "3"
+services:
+  frontend:
+    image: doyts/demoloadbalancing_frontend
+    build:
+      context: .
+      dockerfile: frontend.Dockerfile
+    deploy:
+      replicas: 4
+    networks:
+      - loadbalancing
+
+  nginx:
+    image: doyts/demoloadbalancing_loadbalancer
+    build:
+      context: .
+      dockerfile: loadbalancer.Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - loadbalancing
+    depends_on:
+      - frontend
+
+networks:
+  loadbalancing:
